@@ -1,13 +1,17 @@
 // src/components/shared/Navbar.jsx
-export default function Navbar() {
+import { Link } from "react-router-dom"
+
+function Navbar() {
   return (
-    <nav className="bg-pink-600 text-white p-4 flex justify-between items-center shadow-lg">
-      <h1 className="text-xl font-bold">Women Safety App</h1>
-      <ul className="flex gap-6">
-        <li><a href="#" className="hover:underline">Home</a></li>
-        <li><a href="#" className="hover:underline">Features</a></li>
-        <li><a href="#" className="hover:underline">Contact</a></li>
-      </ul>
+    <nav className="bg-gray-800 text-white px-6 py-3 flex justify-between items-center">
+      <h1 className="font-bold text-lg">Women Safety App</h1>
+      <div className="space-x-6">
+        <Link to="/" className="hover:text-pink-400">Home</Link>
+        <Link to="/child" className="hover:text-pink-400">Child</Link>
+        <Link to="/adult" className="hover:text-pink-400">Adult</Link>
+      </div>
     </nav>
   )
 }
+
+export default Navbar
