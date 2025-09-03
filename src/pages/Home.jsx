@@ -1,7 +1,7 @@
 // src/pages/Home.jsx
 // import Navbar from "../components/Navbar"
 
-export default function Home() {
+function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-200 flex flex-col">
       {/* Navbar
@@ -50,3 +50,4 @@ export default function Home() {
     </div>
   )
 }
+export default Home;
