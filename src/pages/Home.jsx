@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex-1 flex flex-col items-center justify-center text-center">
         {/* App Name */}
         <h1 className="text-7xl font-extrabold text-pink-700 drop-shadow-lg">
-          SafeX
+          SafeSteps
         </h1>
         <p className="mt-4 text-xl text-gray-700 max-w-xl">
           Your trusted companion for safety & support
