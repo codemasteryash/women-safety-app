@@ -49,126 +49,60 @@
 //       </footer>
 //     </div>
 //   )
-// }
-import React, { useEffect } from "react";
+// }import { Link } from "react-router-dom";
 
-export default function SafeSteps() {
-  useEffect(() => {
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach((b, i) => {
-      b.style.opacity = 0;
-      b.style.transform = "translateY(10px)";
-      setTimeout(() => {
-        b.style.transition = "all 420ms cubic-bezier(.2,.9,.3,1)";
-        b.style.opacity = 1;
-        b.style.transform = "";
-      }, 120 + i * 80);
-    });
-  }, []);
-
+export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200 text-slate-800 relative">
-      <main className="min-h-screen flex items-center justify-center px-6 py-16 bg-[radial-gradient(ellipse_at_10%_10%,rgba(255,255,255,0.06)_0%,transparent_30%),radial-gradient(ellipse_at_90%_90%,rgba(255,255,255,0.04)_0%,transparent_20%)]">
-        <div className="w-full max-w-2xl text-center">
-          {/* Logo + tagline */}
-          <div className="relative inline-block mb-8 animate-[floaty_4s_ease-in-out_infinite]">
-            <h1 className="text-6xl sm:text-7xl font-extrabold tracking-tight text-rose-600 drop-shadow-[0_6px_0_rgba(183,28,28,0.06)]">
-              SafeSteps
-            </h1>
-            <p className="mt-3 text-slate-600 text-sm sm:text-base">
-              Your trusted companion for safety &amp; support
-            </p>
+    <div className="relative min-h-screen flex flex-col items-center justify-between bg-gradient-to-br from-black via-gray-900 to-black text-white">
+      
+      {/* Background Glow Orbs */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-20 left-20 w-[600px] h-[600px] bg-pink-500/30 rounded-full blur-[200px]" />
+        <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-indigo-500/30 rounded-full blur-[200px]" />
+        <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 w-[300px] h-[300px] bg-white/10 rounded-full blur-[120px]" />
+      </div>
 
-            <div className="absolute -right-6 -top-6 hidden sm:block">
-              <div className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/20 px-3 py-2 text-xs shadow-sm">
-                Trusted • 24/7
-              </div>
-            </div>
-          </div>
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col items-center justify-center text-center px-4">
+        <h1 className="text-7xl font-extrabold text-pink-400 drop-shadow-[0_0_25px_rgba(236,72,153,0.8)] mb-4">
+          SafeX
+        </h1>
+        <p className="text-xl text-gray-300 max-w-xl">
+          Your trusted companion for safety & support
+        </p>
 
-          {/* Welcome */}
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
+        <div className="mt-12 bg-white/10 backdrop-blur-lg rounded-2xl shadow-[0_0_25px_rgba(255,255,255,0.2)] p-8 max-w-lg w-full border border-white/20">
+          <h2 className="text-3xl font-bold text-white mb-4">
             Welcome to SafeX
           </h2>
-          <p className="text-slate-600 mb-8">Choose your mode to get started:</p>
+          <p className="text-gray-400 mb-8 text-lg">
+            Choose your mode to get started:
+          </p>
 
-          {/* Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
-            {/* Child Mode */}
-            <button
-              aria-label="Child Mode"
-              className="w-full p-6 rounded-2xl text-left bg-white/5 backdrop-blur-md border border-white/20 shadow-lg hover:-translate-y-1 hover:scale-[1.01] transition-transform duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300"
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <a
+              href="/child"
+              className="px-8 py-4 bg-pink-600 text-white text-lg rounded-xl shadow-lg hover:bg-pink-700 hover:shadow-[0_0_20px_rgba(236,72,153,0.8)] transition text-center"
             >
-              <div className="flex items-center gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-14 h-14 rounded-full bg-rose-500/10 flex items-center justify-center text-2xl">
-                    👶
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-lg font-semibold text-rose-600">
-                      Child Mode
-                    </span>
-                    <span className="text-xs text-slate-500">Safe &amp; playful</span>
-                  </div>
-                  <p className="mt-1 text-sm text-slate-500">
-                    Designed for kids: guided help, friendly content, simple interface.
-                  </p>
-                </div>
-              </div>
-            </button>
-
-            {/* Adult Mode */}
-            <button
-              aria-label="Adult Mode"
-              className="w-full p-6 rounded-2xl text-left bg-white/5 backdrop-blur-md border border-white/20 shadow-lg hover:-translate-y-1 hover:scale-[1.01] transition-transform duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
+              Child Mode
+            </a>
+            <a
+              href="/adult"
+              className="px-8 py-4 bg-blue-600 text-white text-lg rounded-xl shadow-lg hover:bg-blue-700 hover:shadow-[0_0_20px_rgba(37,99,235,0.8)] transition text-center"
             >
-              <div className="flex items-center gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-14 h-14 rounded-full bg-blue-500/10 flex items-center justify-center text-2xl">
-                    🛡️
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-lg font-semibold text-slate-900">
-                      Adult Mode
-                    </span>
-                    <span className="text-xs text-slate-500">
-                      Advanced controls
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm text-slate-500">
-                    For guardians: monitoring tools, alerts, and privacy controls.
-                  </p>
-                </div>
-              </div>
-            </button>
-          </div>
-
-          {/* Footer */}
-          <div className="mt-10 pt-6 border-t border-white/40 text-sm text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>© 2025 SafeX. All rights reserved.</div>
-            <div className="flex items-center gap-4 text-xs">
-              <span className="inline-flex items-center gap-2">🔒 Secure</span>
-              <span className="inline-flex items-center gap-2">🌍 Global</span>
-              <span className="inline-flex items-center gap-2">❤️ Child-friendly</span>
-            </div>
+              Adult Mode
+            </a>
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="w-full py-6 text-center text-gray-400 text-sm relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <p className="mt-4">
+          © {new Date().getFullYear()} <span className="text-white font-semibold">SafeX</span> · Crafted with care for your safety
+        </p>
+      </footer>
     </div>
   );
 }
-
-/* Extra animation keyframes for logo */
-const style = document.createElement("style");
-style.innerHTML = `
-  @keyframes floaty {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-  }
-`;
-document.head.appendChild(style);
