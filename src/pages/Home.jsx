@@ -1,9 +1,17 @@
 // src/pages/Home.jsx
 // import Navbar from "../components/Navbar"
 
-function Home() {
+export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-200 flex flex-col">
+  <div className="min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-black/90 via-gray-800/60 via-70% to-white/90">
+  {/* Glow effect */}
+  <div className="absolute inset-0 flex items-center justify-center">
+    {/* Stronger white glow at bottom */}
+    <div className="w-full h-[700px] bg-white/50 blur-[200px] translate-y-32"></div>
+ 
+</div>
+
+
       {/* Navbar
       <Navbar /> */}
 
@@ -11,7 +19,7 @@ function Home() {
       <div className="flex-1 flex flex-col items-center justify-center text-center">
         {/* App Name */}
         <h1 className="text-7xl font-extrabold text-pink-700 drop-shadow-lg">
-          SafeSteps
+          SafeX
         </h1>
         <p className="mt-4 text-xl text-gray-700 max-w-xl">
           Your trusted companion for safety & support
@@ -50,4 +58,3 @@ function Home() {
     </div>
   )
 }
-export default Home;
