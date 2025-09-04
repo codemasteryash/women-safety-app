@@ -65,7 +65,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center text-center px-4">
         <h1 className="text-7xl font-extrabold text-pink-400 drop-shadow-[0_0_25px_rgba(236,72,153,0.8)] mb-4">
-          SafeX
+          SafeSteps
         </h1>
         <p className="text-xl text-gray-300 max-w-xl">
           Your trusted companion for safety & support
@@ -73,7 +73,7 @@ export default function Home() {
 
         <div className="mt-12 bg-white/10 backdrop-blur-lg rounded-2xl shadow-[0_0_25px_rgba(255,255,255,0.2)] p-8 max-w-lg w-full border border-white/20">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Welcome to SafeX
+            Welcome to SafeSteps
           </h2>
           <p className="text-gray-400 mb-8 text-lg">
             Choose your mode to get started:
@@ -100,7 +100,7 @@ export default function Home() {
       <footer className="w-full py-6 text-center text-gray-400 text-sm relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         <p className="mt-4">
-          © {new Date().getFullYear()} <span className="text-white font-semibold">SafeX</span> · Crafted with care for your safety
+          © {new Date().getFullYear()} <span className="text-white font-semibold">SafeSteps</span> · Crafted with care for your safety
         </p>
       </footer>
     </div>

@@ -1,11 +1,7 @@
-import AdultDashboard from "../components/adult/AdultDashboard"
+import AdultDashboard from "../components/adult/AdultDashboard";
 
 function AdultPage() {
-  return (
-    <div className="p-6">
-      <AdultDashboard />
-    </div>
-  )
+  return <AdultDashboard />;
 }
 
-export default AdultPage
+export default AdultPage;
