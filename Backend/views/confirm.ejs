@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Confirm SOS</title>
+  <link rel="stylesheet" href="confirm.css">
+</head>
+<body>
+  <div class="card">
+    <h2>🚨 Do you want to send SOS?</h2>
+    <form id="sosForm" action="/send-sos" method="POST">
+      <input type="hidden" name="latitude" id="lat">
+      <input type="hidden" name="longitude" id="long">
+      <button type="submit" class="yes">Yes, Send</button>
+      <button type="button" class="no" onclick="window.history.back()"><a href="http://localhost:5173/child" class="cancel">Cancel</a></button>
+    </form>
+  </div>
+
+  <script>
+    // Get location before submitting
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        document.getElementById("lat").value = pos.coords.latitude;
+        document.getElementById("long").value = pos.coords.longitude;
+      });
+    }
+  </script>
+</body>
+</html>
