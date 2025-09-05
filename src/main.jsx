@@ -21,8 +21,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> }, // ✅ "/" route
-      { path: "child", element: <ChildDashboard /> },
-      { path: "voice-help", element: <VoiceHelp /> },
+      { path: "child", element: <ChildDashboard /> }, // child route 
+      { path: "voice-help", element: <VoiceHelp /> }, // voicehelp  route 
       { path: "family", element: <FamilyPage /> },
       { path: "location", element: <LocationPage /> },
       { path: "adult", element: <AdultPage /> },
