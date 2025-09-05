@@ -1,4 +1,4 @@
-// src/main.jsx
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <Home /> }, // ✅ "/" route
+      { path:"/", element: <Home /> }, // ✅ "/" route
       { path: "child", element: <ChildDashboard /> }, // child route 
       { path: "voice-help", element: <VoiceHelp /> }, // voicehelp  route 
       { path: "family", element: <FamilyPage /> },
