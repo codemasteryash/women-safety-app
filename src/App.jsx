@@ -1,13 +1,10 @@
-// src/App.jsx
 import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <div >
-
-      <main >
-        <Outlet />
-      </main>
+      {/* all children pages will render here */}
+      <Outlet />
     </div>
   );
 }
