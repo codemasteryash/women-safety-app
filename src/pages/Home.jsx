@@ -6,6 +6,7 @@ export default function Home() {
 
   return (
     <div className="relative w-screen h-screen flex flex-col bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-x-hidden overflow-y-auto ">
+    <div className="relative h-[100%]  flex flex-col items-center justify-between bg-gradient-to-br from-black via-gray-900 to-black text-white w-[100%]">
       {/* Background Glow Orbs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-20 left-20 w-[600px] h-[600px] bg-pink-500/30 rounded-full blur-[200px]" />
