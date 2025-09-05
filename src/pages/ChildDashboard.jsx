@@ -132,13 +132,14 @@
 // src/pages/ChildDashboard.jsx
 "use client";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import LocationCard from "../components/child/LocationCard";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import VoiceHelpButton from "../components/child/VoiceHelpButton";
 import SOSButton from "../components/sosbutton";
 
 function ChildDashboard() {
   const navigate = useNavigate();
+  const [showSOSPopup, setShowSOSPopup] = useState(false);
 
   // Variants for card animations
   const cardVariants = {
@@ -158,33 +159,13 @@ function ChildDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-200 flex flex-col items-center py-10">
       {/* Title */}
-      {/* <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="flex items-center justify-center gap-4 mb-10"
-      >
-        <div className="h-28 w-28 flex items-center justify-center rounded-full bg-white/30 backdrop-blur-sm p-2 shadow-lg">
-          <div
-            className="w-24 h-24 bg-yellow-500 drop-shadow-[0_0_25px_rgba(236,72,153,0.8)]"
-            style={{
-              WebkitMask: "url('/childsafe.png') no-repeat center / contain",
-              mask: "url('/childsafe.png') no-repeat center / contain",
-            }}
-          />
-        </div>
-        <h1 className="text-5xl font-extrabold text-pink-800 drop-shadow-lg">
-          Child Dashboard
-        </h1>
-      </motion.div> */}
       <div className="flex items-center justify-center ">
         <div className=" h-26 w-26 mb-4 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
           <div
-            className=" w-64  h-64     bg-yellow-500 drop-shadow-[0_0_25px_rgba(236,72,153,0.8)]"
-
+            className=" w-64  h-64 bg-yellow-500 drop-shadow-[0_0_25px_rgba(236,72,153,0.8)]"
             style={{
               WebkitMask: "url('/childsafe.png') no-repeat center / contain",
-              mask: "url('/childsafe.png') no-repeat center / contain"
+              mask: "url('/childsafe.png') no-repeat center / contain",
             }}
           ></div>
         </div>
@@ -201,11 +182,21 @@ function ChildDashboard() {
           initial="hidden"
           animate="visible"
           custom={0}
-          whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(255,0,0,0.25)" }}
+          whileHover={{
+            scale: 1.03,
+            boxShadow: "0 8px 24px rgba(255,0,0,0.25)",
+          }}
           className="relative bg-white/80 backdrop-blur-xl border border-white/20 rounded-2xl p-8 flex flex-col items-center text-center transition-all"
         >
-          <h2 className="text-2xl font-bold text-red-600 mb-6"> SOS Emergency</h2>
-          <SOSButton />
+          <h2 className="text-2xl font-bold text-red-600 mb-6">
+            SOS Emergency
+          </h2>
+
+          {/* SOS Button with popup */}
+          <div onClick={() => setShowSOSPopup(true)}>
+            <SOSButton />
+          </div>
+
           <p className="mt-5 text-gray-600 text-sm">
             Instantly send an emergency alert to your guardians.
           </p>
@@ -217,126 +208,145 @@ function ChildDashboard() {
           initial="hidden"
           animate="visible"
           custom={1}
-          whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(128,0,255,0.25)" }}
+          whileHover={{
+            scale: 1.03,
+            boxShadow: "0 8px 24px rgba(128,0,255,0.25)",
+          }}
           className="relative bg-white/80 backdrop-blur-xl border border-white/20 rounded-2xl p-8 flex flex-col items-center text-center transition-all"
         >
           <h2 className="text-2xl font-extrabold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent mb-4">
             🎤 Voice Help
           </h2>
           <VoiceHelpButton />
-
           <p className="mt-4 text-gray-500 text-sm max-w-xs">
             Trigger safety alerts and commands <br /> using just your voice.
           </p>
           <div className="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-tr from-purple-500/10 via-transparent to-purple-600/10" />
         </motion.div>
 
-
+        {/* My Location */}
         <motion.div
-  variants={cardVariants}
-  initial="hidden"
-  animate="visible"
-  custom={2}
-  whileHover={{
-    scale: 1.03,
-    boxShadow: "0 8px 24px rgba(0,255,0,0.25)",
-  }}
-  className="relative bg-white/80 backdrop-blur-xl border border-white/20 rounded-2xl p-8 flex flex-col items-center text-center transition-all"
->
-  {/* Symbolic Location Icon */}
+          variants={cardVariants}
+          initial="hidden"
+          animate="visible"
+          custom={2}
+          whileHover={{
+            scale: 1.03,
+            boxShadow: "0 8px 24px rgba(0,255,0,0.25)",
+          }}
+          className="relative bg-white/80 backdrop-blur-xl border border-white/20 rounded-2xl p-8 flex flex-col items-center text-center transition-all"
+        >
+          <h2 className="text-2xl font-bold text-green-600 mb-4">
+            My Location
+          </h2>
 
-  {/* Title */}
-  <h2 className="text-2xl font-bold text-green-600 mb-4"> My Location</h2>
+          <div className="relative w-24 h-24 mb-4 flex items-center justify-center">
+            <span className="absolute w-24 h-24 rounded-full border-2 border-green-400/40 animate-ping" />
+            <span className="absolute w-16 h-16 rounded-full border border-green-400/50 animate-pulse" />
+            <div className="relative w-24 h-24 flex items-center justify-center rounded-full bg-gradient-to-b from-green-500 to-green-700 shadow-lg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-8 h-8 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zM12 11.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+              </svg>
+            </div>
+          </div>
 
-  <div className="relative w-24 h-24 mb-4 flex items-center justify-center">
-    {/* Radar glow rings */}
-    <span className="absolute w-24 h-24 rounded-full border-2 border-green-400/40 animate-ping" />
-    <span className="absolute w-16 h-16 rounded-full border border-green-400/50 animate-pulse" />
+          <button
+            onClick={() => navigate("/location")}
+            className="mt-4 px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 shadow-md hover:scale-105 active:scale-95 transition-all"
+          >
+            Open Location
+          </button>
 
-    {/* Map Pin Icon */}
-    <div className="relative w-24 h-24  flex items-center justify-center rounded-full bg-gradient-to-b from-green-500 to-green-700 shadow-lg">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8 text-white"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zM12 11.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
-      </svg>
-    </div>
-  </div>
-  {/* Location Card */}
-  {/* <LocationCard /> */}
-
-  {/* Button */}
-  <button
-    onClick={() => navigate("/location")}
-    className="mt-4 px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 shadow-md hover:scale-105 active:scale-95 transition-all"
-  >
-    Open Location
-  </button>
-
-  {/* Description */}
-  <p className="mt-3 text-gray-600 text-sm">
-    Track and share your real-time location securely.
-  </p>
-</motion.div>
-
+          <p className="mt-3 text-gray-600 text-sm">
+            Track and share your real-time location securely.
+          </p>
+        </motion.div>
 
         {/* My Family */}
-<motion.div
-  variants={cardVariants}
-  initial="hidden"
-  animate="visible"
-  custom={3}
-  whileHover={{
-    scale: 1.03,
-    boxShadow: "0 8px 24px rgba(0,128,255,0.25)",
-  }}
-  className="relative bg-white/80 backdrop-blur-xl border border-white/20 rounded-2xl p-8 flex flex-col items-center text-center transition-all"
->
-  <h2 className="text-2xl font-bold text-blue-600 mb-4"> Family</h2>
-  {/* Symbolic Family Icon */}
-  <div className="relative w-24 h-24 mb-4 flex items-center justify-center">
-    {/* Glow ring */}
-    <span className="absolute w-24 h-24 rounded-full border-2 border-blue-400/40 animate-pulse" />
-    <span className="absolute w-16 h-16 rounded-full border border-blue-400/50 animate-ping" />
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          animate="visible"
+          custom={3}
+          whileHover={{
+            scale: 1.03,
+            boxShadow: "0 8px 24px rgba(0,128,255,0.25)",
+          }}
+          className="relative bg-white/80 backdrop-blur-xl border border-white/20 rounded-2xl p-8 flex flex-col items-center text-center transition-all"
+        >
+          <h2 className="text-2xl font-bold text-blue-600 mb-4">Family</h2>
 
-    {/* Family icon bubble */}
-    <div className="relative w-24 h-24 flex items-center justify-center rounded-full bg-gradient-to-b from-blue-500 to-blue-700 shadow-lg">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8 text-white"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path d="M16 11c1.66 0 3-1.34 3-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5C18 14.17 13.33 13 11 13zm8 0c-.29 0-.62.02-.97.05A6.97 6.97 0 0 1 20 17v3h4v-3.5c0-2.33-4.67-3.5-7-3.5z"/>
-      </svg>
-    </div>
-  </div>
+          <div className="relative w-24 h-24 mb-4 flex items-center justify-center">
+            <span className="absolute w-24 h-24 rounded-full border-2 border-blue-400/40 animate-pulse" />
+            <span className="absolute w-16 h-16 rounded-full border border-blue-400/50 animate-ping" />
+            <div className="relative w-24 h-24 flex items-center justify-center rounded-full bg-gradient-to-b from-blue-500 to-blue-700 shadow-lg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-8 h-8 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M16 11c1.66 0 3-1.34 3-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5C18 14.17 13.33 13 11 13zm8 0c-.29 0-.62.02-.97.05A6.97 6.97 0 0 1 20 17v3h4v-3.5c0-2.33-4.67-3.5-7-3.5z" />
+              </svg>
+            </div>
+          </div>
 
-  {/* Title */}
+          <button
+            onClick={() => navigate("/family")}
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all"
+          >
+            Open Family Contacts
+          </button>
 
-  {/* Action Button */}
-  <button
-    onClick={() => navigate("/family")}
-    className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all"
-  >
-    Open Family Contacts
-  </button>
+          <p className="mt-3 text-gray-600 text-sm">
+            Quickly reach your trusted family members in need.
+          </p>
 
-  {/* Description */}
-  <p className="mt-3 text-gray-600 text-sm">
-    Quickly reach your trusted family members in need.
-  </p>
-
-  {/* Subtle background glow */}
-  <div className="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-tr from-blue-500/10 via-transparent to-blue-600/10" />
-</motion.div>
-
+          <div className="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-tr from-blue-500/10 via-transparent to-blue-600/10" />
+        </motion.div>
       </div>
+
+      {/* Fancy SOS Popup */}
+      <AnimatePresence>
+        {showSOSPopup && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="bg-white rounded-2xl shadow-2xl p-8 text-center max-w-sm"
+            >
+              <h2 className="text-2xl font-bold text-red-600 mb-4">
+                🚨 SOS Activated!
+              </h2>
+              <p className="text-gray-700 mb-6">
+                Your guardians have been alerted. Help is on the way!
+              </p>
+              <button
+                onClick={() => setShowSOSPopup(false)}
+                className="px-6 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition"
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
 export default ChildDashboard;
+
+
