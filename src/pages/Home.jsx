@@ -1,5 +1,9 @@
-
+import { useNavigate } from "react-router-dom";
 export default function Home() {
+  const navigate = useNavigate()
+
+
+
   return (
     <div className="relative w-screen h-screen flex flex-col bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-x-hidden overflow-y-auto ">
       {/* Background Glow Orbs */}
@@ -47,7 +51,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {/* Child Mode */}
             <a
-              href="/child"
+              onClick={() =>navigate("/child")}
               className="group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-700 text-white shadow-lg border border-pink-300/30 hover:scale-105 hover:shadow-[0_0_30px_rgba(236,72,153,0.8)] transition transform duration-300"
             >
               <div className="h-20 w-20 mb-4 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
@@ -64,7 +68,7 @@ export default function Home() {
 
             {/* Adult Mode */}
             <a
-              href="/adult"
+              onClick={() => navigate("/adult")}
               className="group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-lg border border-blue-300/30 hover:scale-105 hover:shadow-[0_0_30px_rgba(37,99,235,0.8)] transition transform duration-300"
             >
               <img
@@ -90,6 +94,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
