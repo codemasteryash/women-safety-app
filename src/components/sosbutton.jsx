@@ -4,6 +4,11 @@ import { useState } from "react";
 export default function SOSButton() {
   const [isPressed, setIsPressed] = useState(false);
 
+  // ✅ New handler
+  const handleClick = () => {
+    window.location.href = "http://localhost:5000/sos"; 
+  };
+
   return (
     <div className="relative w-40 h-40 flex items-center justify-center">
       {/* Outer bezel / frame */}
@@ -19,6 +24,7 @@ export default function SOSButton() {
 
       {/* Button face */}
       <button
+        onClick={handleClick} // ✅ redirect to backend
         onMouseDown={() => setIsPressed(true)}
         onMouseUp={() => setIsPressed(false)}
         onMouseLeave={() => setIsPressed(false)}

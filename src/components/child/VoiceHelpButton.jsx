@@ -1,26 +1,17 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function VoiceHelpButton() {
-  const navigate = useNavigate();
   const [isPressed, setIsPressed] = useState(false);
 
   const handleClick = () => {
-    navigate("/voice-help");
+    // ✅ Just open the black interface page
+    window.location.href = "/voice-help";
   };
 
   return (
     <div className="relative w-40 h-40 flex items-center justify-center">
       {/* Outer bezel / frame */}
-      <div
-        className="absolute w-3/4 h-3/4 rounded-full"
-        // style={{
-        //   background: "linear-gradient(145deg, #1a1a1a, #0d0d0d)",
-        //   boxShadow:
-        //     "inset 0 4px 8px rgba(0,0,0,0.9), 0 4px 10px rgba(0,0,0,0.7)",
-        //   padding: "12px",
-        // }}
-      />
+      <div className="absolute w-3/4 h-3/4 rounded-full" />
 
       {/* Mic Button Face */}
       <button
@@ -73,3 +64,4 @@ function VoiceHelpButton() {
 }
 
 export default VoiceHelpButton;
+

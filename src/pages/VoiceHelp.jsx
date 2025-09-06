@@ -5,7 +5,7 @@ function VoiceHelp() {
   const [listening, setListening] = useState(false);
   let recognition;
 
-  // Check if browser supports speech recognition
+  // ✅ Setup browser speech recognition
   if ("webkitSpeechRecognition" in window) {
     recognition = new window.webkitSpeechRecognition();
     recognition.continuous = false;
@@ -33,20 +33,12 @@ function VoiceHelp() {
     }
   };
 
-  // Handle voice/text commands
-  const handleCommand = (command) => {
-    if (command.includes("help")) {
-      alert("🚨 SOS Alert triggered!");
-    } else if (command.includes("emergency")) {
-      alert("⚠️ Emergency alert sent!");
-    } else if (command.includes("danger")) {
-      alert("❗ Danger detected, contacting guardians!");
-    } else if (command.includes("call mom")) {
-      alert("📞 Calling mom...");
-    } else {
-      alert("❓ Command not recognized.");
-    }
-  };
+  
+ const handleCommand = (command) => {
+  window.location.href = `http://localhost:5000/api/voice-help?command=${encodeURIComponent(command)}`;
+};
+
+  
 
   const handleTextSubmit = () => {
     if (transcript.trim()) {
@@ -111,3 +103,4 @@ function VoiceHelp() {
 }
 
 export default VoiceHelp;
+
