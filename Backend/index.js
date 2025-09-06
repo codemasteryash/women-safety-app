@@ -1,9 +1,9 @@
-/* eslint-disable no-undef */
+
 const express = require("express");
 const path = require("path");
 const app = express();
 
-const PORT = 3000;
+const PORT = 5000;
 
 // EJS setup
 app.set("view engine", "ejs");
@@ -26,6 +26,14 @@ app.post("/send-sos", (req, res) => {
 
   res.render("alert", { id, time, latitude, longitude });
 });
+
+// Voice Help Route
+app.get("/api/voice-help", (req, res) => {
+  const { command } = req.query;
+  console.log(`Voice command received: ${command}`);
+  res.render("voicehelp", { command });
+});
+
 
 app.listen(PORT, () => {
   console.log(`✅ Backend running at http://localhost:${PORT}`);
